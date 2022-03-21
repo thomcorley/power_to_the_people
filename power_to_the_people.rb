@@ -1,9 +1,34 @@
+class PeoplePowerCalculator
+  def initialize(number)
+    @number = number
+  end
+
+  def people?
+    number%3 == 0
+  end
+
+  def power?
+    number%5 == 0
+  end
+
+  def people_power?
+    people? && power?
+  end
+
+  private
+
+  attr_reader :number
+end
+
+
 [*1..100].each do |num|
-  if num%3 == 0 && num%5 == 0
+  calc = PeoplePowerCalculator.new(num)
+
+  if calc.people_power?
     puts "#{num} People Power"
-  elsif num%3 == 0
+  elsif calc.people?
     puts "#{num} People"
-  elsif num%5 == 0
+  elsif calc.power?
     puts "Power"
   else
     puts num
